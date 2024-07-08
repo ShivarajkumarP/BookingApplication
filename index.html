@@ -24,7 +24,7 @@
     <script>
         function saveToLocalStorage(event) {
             event.preventDefault();
-            console.log("clicked")
+            
             const name = event.target.username.value;
             const email = event.target.emailId.value;
             const phone = event.target.phone.value;
@@ -37,15 +37,17 @@
                 phone: phone
             };
             // localStorage.setItem('userDetails', JSON.stringify(obj));
-            axios.post('https://crudcrud.com/api/69555cc51d6f479c9004d1f601d7d4f1/bookingData', obj)
+            axios.post('https://crudcrud.com/api/00f7c7cd6be34d749e892939fc012361/bookingData', obj)
                 .then((res) => showUserOnScreen(res.data)).catch(err => console.log(err));
+
+            console.log(obj)
             document.getElementById('username').value = '';
             document.getElementById('emailId').value = '';
             document.getElementById('phone').value = '';
         }
 
         window.addEventListener("DOMContentLoaded", () => {
-            axios.get("https://crudcrud.com/api/69555cc51d6f479c9004d1f601d7d4f1/bookingData")
+            axios.get("https://crudcrud.com/api/00f7c7cd6be34d749e892939fc012361/bookingData")
                 .then((res) => {
                     for (var i = 0; i < res.data.length; i++) {
                         showUserOnScreen(res.data[i]);
@@ -65,7 +67,7 @@
         }
         function editUser(userId) {
             // Fetch the user data from the server using the userId
-            axios.get(`https://crudcrud.com/api/69555cc51d6f479c9004d1f601d7d4f1/bookingData/${userId}`)
+            axios.get(`https://crudcrud.com/api/00f7c7cd6be34d749e892939fc012361/bookingData/${userId}`)
                 .then((res) => {
                     // Populate the form fields with the user data
                     document.getElementById('username').value = res.data.name;
@@ -88,7 +90,7 @@
                 };
 
                 // Send a PUT request to the server to update the user data
-                axios.put(`https://crudcrud.com/api/69555cc51d6f479c9004d1f601d7d4f1/bookingData/${userId}`, updatedUserData)
+                axios.put(`https://crudcrud.com/api/00f7c7cd6be34d749e892939fc012361/bookingData/${userId}`, updatedUserData)
                     .then((res) => {
                         // Update the user data on the screen
                         const parentNode = document.getElementById('listOfUsers');
@@ -104,7 +106,7 @@
         }
 
         function deleteUser(userId) {
-            axios.delete(`https://crudcrud.com/api/69555cc51d6f479c9004d1f601d7d4f1/bookingData/${userId}`)
+            axios.delete(`https://crudcrud.com/api/00f7c7cd6be34d749e892939fc012361/bookingData/${userId}`)
                 .then(res => removeUserFromScreen(res))
                 .catch(err => console.log(err));
         }
